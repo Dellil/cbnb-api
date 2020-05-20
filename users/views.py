@@ -67,6 +67,7 @@ class FavsView(APIView):
 @api_view(["GET"])
 def user_detail(request, pk):
     try:
+        print("유저 디테일이라는데요")
         user = User.objects.get(pk=pk)
         return Response(UserSerializer(user).data)
     except User.DoesNotExist:
@@ -84,7 +85,7 @@ def login(request):
 
     if user is not None:
         encoded_jwt = jwt.encode(
-            {"id": user.pk}, settings.SECRET_KEY, algorithm="HS256",)
+            {"pk": user.pk}, settings.SECRET_KEY, algorithm=["HS256"])
         return Response(data={"token": encoded_jwt})
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
