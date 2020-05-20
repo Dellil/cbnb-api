@@ -8,7 +8,6 @@ from users.models import User
 class JWTAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
         try:
-            print("JWT인증쪽인데요?")
             token = request.META.get("HTTP_AUTHORIZATION")
             if token is None:
                 return None

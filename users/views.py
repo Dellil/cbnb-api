@@ -67,7 +67,6 @@ class FavsView(APIView):
 @api_view(["GET"])
 def user_detail(request, pk):
     try:
-        print("유저 디테일이라는데요")
         user = User.objects.get(pk=pk)
         return Response(UserSerializer(user).data)
     except User.DoesNotExist:
